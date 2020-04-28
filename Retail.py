@@ -57,6 +57,14 @@ s=list(df['Customer type'].unique())
 #CHECK NUMBER OF MISSING VALUES - SHOULD GIVE ZERO
 #print(df.isnull().sum().sum())
 
+#CHECKING UNIQUE VALUES
+print("# unique values in Branch: {0}".format(len(df['Branch'].unique().tolist())))
+print("# unique values in City: {0}".format(len(df['City'].unique().tolist())))
+print("# unique values in Customer Type: {0}".format(len(df['Customer type'].unique().tolist())))
+print("# unique values in Gender: {0}".format(len(df['Gender'].unique().tolist())))
+print("# unique values in Product Line: {0}".format(len(df['Product line'].unique().tolist())))
+print("# unique values in Payment: {0}".format(len(df['Payment'].unique().tolist())))
+
 
 #DATA FORMATTING
 df[['Quantity']]=df[['Quantity']].astype("int")
@@ -127,4 +135,13 @@ gk = df.groupby('Product line')
 print(gk.get_group('Health and beauty')) 
 
 #CREATE A FACTOR
+
+
+
+
+
+#VISUALIZATIONS
+genderCount  = sns.lineplot(x="Hours",  y = 'Quantity',data =df).set_title("Product Sales per Hour")
+
+genderCount  = sns.relplot(x="Hours",  y = 'Quantity', col= 'Month' , row= 'Branch', kind="line", hue="Gender", style="Gender", data =df)
     
